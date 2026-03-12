@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 透明ウィンドウ + 角丸クリップの多重防衛 */
+html {
+  background: transparent;
+  /* border-radius + overflow:hidden で WKWebView の角を透明にクリップ */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+body {
+  background: transparent;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  color: white;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#root {
+  width: 260px;
+  display: inline-block;
+}
