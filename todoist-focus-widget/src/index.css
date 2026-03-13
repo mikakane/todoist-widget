@@ -6,14 +6,13 @@
 
 /* 透明ウィンドウ + 角丸クリップの多重防衛 */
 html {
-  background: transparent;
-  /* border-radius + overflow:hidden で WKWebView の角を透明にクリップ */
-  border-radius: 10px;
-  overflow: hidden;
+  background: transparent !important;
 }
 
 body {
-  background: transparent;
+  background: transparent !important;
+  /* native corner radius を使わず CSS 側で角丸を作る（透過合成で白が出るのを防ぐ） */
+  border-radius: 10px;
   overflow: hidden;
   font-family: system-ui, -apple-system, sans-serif;
   font-size: 14px;
