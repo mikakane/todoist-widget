@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "tauri-dev",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "export PATH=\"$HOME/.cargo/bin:$PATH\" && cd todoist-focus-widget && npm run tauri -- dev"],
+      "port": 1420
+    },
+    {
+      "name": "vite",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "cd todoist-focus-widget && npm run dev"],
+      "port": 1420
+    }
+  ]
+}
