@@ -51,9 +51,9 @@ export default function App() {
 
   const handleClose = async () => {
     try {
-      await getCurrentWindow().close();
+      await getCurrentWindow().hide();
     } catch (e) {
-      console.error("close failed:", e);
+      console.error("hide failed:", e);
     }
   };
 

@@ -24,8 +24,7 @@ struct TasksPage {
 
 /// Todoist API v1 から今日の P1 タスクを全件取得する
 pub async fn fetch_p1_tasks() -> Result<Vec<Task>, String> {
-    let token = std::env::var("TODOIST_TOKEN")
-        .map_err(|_| "TODOIST_TOKEN が未設定です。.env を確認してください。".to_string())?;
+    let token = crate::config::get_token()?;
 
     // 今日の日付文字列 (例: "2026-03-12")
     let today = Local::now().format("%Y-%m-%d").to_string();
@@ -101,8 +100,7 @@ pub async fn fetch_p1_tasks() -> Result<Vec<Task>, String> {
 
 /// タスクを完了状態にする（繰り返しタスクは今回分のみ完了）
 pub async fn close_task(task_id: &str) -> Result<(), String> {
-    let token = std::env::var("TODOIST_TOKEN")
-        .map_err(|_| "TODOIST_TOKEN が未設定です。".to_string())?;
+    let token = crate::config::get_token()?;
 
     // Sync API の item_close を使う。
     // item_close は「今回の分だけ完了して次の繰り返しをスケジュール」する。
