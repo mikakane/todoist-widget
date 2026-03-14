@@ -30,20 +30,31 @@ export function TaskItem({ task, onClose }: Props) {
 
   return (
     <div className="task-item" style={{ opacity: closing ? 0.4 : 1 }}>
-      <span
-        className="checkbox"
+      {/* 丸チェックボックス */}
+      <div
+        className={`checkbox${closing ? " checked" : ""}`}
         onClick={handleCheck}
         title="完了にする"
       >
-        {closing ? "✓" : "☐"}
-      </span>
+        {closing && (
+          <svg width={10} height={10} viewBox="0 0 24 24" fill="white">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+        )}
+      </div>
+
+      {/* タスク内容 */}
       <span
         className="content"
         onClick={handleOpen}
         title="Todoist で開く"
+        style={{ textDecoration: closing ? "line-through" : "none" }}
       >
         {task.content}
       </span>
+
+      {/* P1 バッジ */}
+      <span className="p1-badge">P1</span>
     </div>
   );
 }

@@ -118,8 +118,13 @@ pub fn run() {
                 .items(&[&toggle_item, &settings_item, &separator, &quit])
                 .build()?;
 
+            // build.rs で tray.svg → tray.png に変換済み
+            let tray_icon = tauri::image::Image::from_bytes(
+                include_bytes!(concat!(env!("OUT_DIR"), "/tray.png"))
+            ).unwrap();
+
             TrayIconBuilder::new()
-                .icon(app.default_window_icon().unwrap().clone())
+                .icon(tray_icon)
                 .tooltip("Todoist Focus Widget")
                 .menu(&menu)
                 .show_menu_on_left_click(true) // クリックは常にメニューを表示
