@@ -39,7 +39,19 @@ export default function Settings() {
           autoFocus
         />
         <p className="settings-hint">
-          Todoist 設定 → 連携 → API トークン から取得できます
+          <a
+            href="#"
+            className="settings-link"
+            onClick={(e) => {
+              e.preventDefault();
+              invoke("open_url", {
+                url: "https://app.todoist.com/app/settings/integrations/developer",
+              });
+            }}
+          >
+            Todoist 設定 → 連携 → Developer
+          </a>
+          {" "}から取得できます
         </p>
       </div>
 

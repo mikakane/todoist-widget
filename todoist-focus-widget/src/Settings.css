@@ -69,6 +69,18 @@ body {
   line-height: 1.4;
 }
 
+.settings-link {
+  color: #0071e3;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.settings-link:hover {
+  color: #0077ed;
+  text-decoration: underline;
+}
+
 /* ── ボタン行 ── */
 .settings-actions {
   display: flex;
