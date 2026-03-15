@@ -79,3 +79,33 @@ todoist-focus-widget/
 - リサイズ不可
 - Mac 右上 (screenWidth - 280, y=20) に自動配置
 - 30秒ごとに自動更新
+
+## CI/CD
+
+GitHub Actions で自動ビルド・リリースを実行。
+
+### トリガー
+
+| イベント | ビルド | Artifacts | Release |
+|---------|--------|-----------|---------|
+| main push | ✅ | ✅ | - |
+| `v*.*.*` タグ push | ✅ | ✅ | ✅ |
+
+### 開発版 dmg のダウンロード
+
+1. [Actions](../../actions) タブを開く
+2. 左サイドバーから **Release** ワークフローを選択
+3. 最新の main ブランチ実行（緑チェック）をクリック
+4. ページ下部の **Artifacts** セクションで `todoist-focus-widget-dmg` をクリック
+5. zip を解凍して dmg を取得
+
+※ Artifacts の保持期間は 90 日間
+
+### リリース
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+タグ push で自動的に GitHub Releases に dmg がアップロードされる。
