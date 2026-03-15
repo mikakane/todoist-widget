@@ -10,4 +10,4 @@
 ## Issue-driven 開発
 
 Issue対応は `/issue {番号}` コマンドで開始する。
-詳細な手順・フォーマット・ルールは `.claude/commands/issue.md` を参照。
+詳細な手順・フォーマット・ルールは `.claude/skills/issue/SKILL.md` を参照。
