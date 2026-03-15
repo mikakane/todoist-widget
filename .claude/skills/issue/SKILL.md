@@ -1,3 +1,10 @@
+---
+name: issue
+description: GitHub Issue を起点に、計画・実装・PR作成を行う Issue-driven 開発ワークフロー
+disable-model-invocation: true
+argument-hint: "[issue-number]"
+---
+
 # Issue-driven 開発コマンド
 
 Issue番号 `$ARGUMENTS` を受け取り、以下のステップを順番に実行する。
