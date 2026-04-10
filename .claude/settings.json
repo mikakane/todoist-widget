@@ -1,0 +1,6 @@
+{
+  "allowedTools": [
+    "Bash(gh issue view *)",
+    "Bash(gh issue edit *)"
+  ]
+}
