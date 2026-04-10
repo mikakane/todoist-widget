@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { getCurrentWindow } from "@tauri-apps/api/window";
+import { enable, disable, isEnabled } from "@tauri-apps/plugin-autostart";
 import "./Settings.css";
 
 export default function Settings() {
   const [token, setToken] = useState("");
   const [status, setStatus] = useState<"idle" | "saved" | "error">("idle");
+  const [autostart, setAutostart] = useState(false);
 
   useEffect(() => {
     invoke<string>("get_token").then(setToken).catch(() => {});
+    isEnabled().then(setAutostart).catch(() => {});
   }, []);
 
   const handleSave = async () => {
@@ -18,6 +21,19 @@ export default function Settings() {
       setTimeout(() => setStatus("idle"), 2000);
     } catch {
       setStatus("error");
+    }
+  };
+
+  const handleAutostartToggle = async () => {
+    try {
+      if (autostart) {
+        await disable();
+      } else {
+        await enable();
+      }
+      setAutostart(!autostart);
+    } catch {
+      // autostart の変更に失敗しても UI はそのまま
     }
   };
 
@@ -53,6 +69,16 @@ export default function Settings() {
           </a>
           {" "}から取得できます
         </p>
+      </div>
+
+      <div className="settings-field settings-field--row">
+        <label>ログイン時に起動</label>
+        <button
+          role="switch"
+          aria-checked={autostart}
+          className={`toggle-switch${autostart ? " toggle-switch--on" : ""}`}
+          onClick={handleAutostartToggle}
+        />
       </div>
 
       <div className="settings-actions">

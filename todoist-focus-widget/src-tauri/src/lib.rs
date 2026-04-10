@@ -6,6 +6,7 @@ use tauri::{
     tray::TrayIconBuilder,
     Manager, LogicalPosition,
 };
+use tauri_plugin_autostart::MacosLauncher;
 use todoist::{fetch_p1_tasks, close_task, Task};
 
 #[tauri::command]
@@ -68,7 +69,7 @@ fn open_settings(app: &tauri::AppHandle) {
         tauri::WebviewUrl::App("index.html".into()),
     )
     .title("Todoist Focus Widget – 設定")
-    .inner_size(420.0, 230.0)
+    .inner_size(420.0, 270.0)
     .resizable(false)
     .build();
 }
@@ -78,6 +79,7 @@ pub fn run() {
     let _ = dotenvy::dotenv();
 
     tauri::Builder::default()
+        .plugin(tauri_plugin_autostart::init(MacosLauncher::LaunchAgent, None))
         .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![
             get_tasks, complete_task, open_url, get_token, save_token
