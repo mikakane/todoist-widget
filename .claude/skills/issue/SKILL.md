@@ -178,6 +178,8 @@ git checkout -b fix/issue-$ARGUMENTS-{概要}
 
 ## Step 8: PR 作成
 
+確認なしで即座に PR を作成する。
+
 ```bash
 gh pr create \
   --title "{type}: {タイトル} (#$ARGUMENTS)" \
